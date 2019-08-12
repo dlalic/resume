@@ -1,0 +1,14 @@
+\section{Employment}
+<% for employment in employments %>
+\begin{description}
+    \item [<<employment.company>>] <<employment.title>>, <<employment.duration()>>
+    \item [] \footnotesize\textsl{
+    <% for keyword in employment.keywords %> <<keyword>> <% endfor %>
+    }
+\end{description}
+\begin{itemize}[leftmargin=0.05\textwidth]
+    <% for point in employment.points %>
+    \item <<point>>
+    <% endfor %>
+\end{itemize}
+<% endfor %>

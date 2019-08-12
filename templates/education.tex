@@ -1,0 +1,9 @@
+\section{Education}
+<% for education in educations %>
+\begin{description}
+    \item [<<education.institution>>]
+\end{description}
+\begin{itemize}[leftmargin=0.05\textwidth]
+    \item <<education.title>>, <<education.duration()>>
+\end{itemize}
+<% endfor %>

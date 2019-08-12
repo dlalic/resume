@@ -1,0 +1,12 @@
+\section{Skills}
+<% for skill in skills %>
+    \subsubsection{<<skill.name>>}
+	\definecolor{<<skill.start_color_name()>>}{RGB}{<<skill.start_color>>}
+	\definecolor{<<skill.end_color_name()>>}{RGB}{<<skill.end_color>>}
+    \begin{tikzpicture}
+	\foreach \x in {1,...,<<skill.level>>}
+	{ \pgfmathtruncatemacro{\percent}{100 - \x /<<skill.level + 1>> * 100}
+	  \node[rectangle,draw=none,fill=<<skill.start_color_name()>>!\percent!<<skill.end_color_name()>>,minimum width=30] (0,0) at (\x, 0) { };
+	}
+	\end{tikzpicture}
+<% endfor %>

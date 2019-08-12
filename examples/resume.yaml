@@ -1,0 +1,37 @@
+person:
+  name: Jane Doe
+  location: Berlin, Germany
+  contact: foo@bar.com
+employments:
+  - company: Acme Corp
+    title: Code monkey
+    start: 2017
+    end: 2019
+    keywords:
+      - foo
+      - bar
+      - baz
+    points:
+      - Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      - Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+educations:
+  - institution: Mars Univeristy
+    title: dfg.gf.gdf.dfg.gdf.dgf
+    start: 2017-01
+    end: 2017-01
+skills:
+  - name: Web
+    level: 3
+    start_color: 36, 36, 93
+    end_color: 115, 199, 238
+  - name: Mobile
+    level: 4
+    start_color: 175, 48, 51
+    end_color: 240, 177, 86
+experiences:
+  - name: Maintenance
+    percent: 60
+    color: 218, 64, 122
+  - name: Greenfield
+    percent: 40
+    color: 95	,175, 87
