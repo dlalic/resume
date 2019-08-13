@@ -24,7 +24,7 @@ where
 mod tests {
     use super::*;
     use crate::serializers::date_serializer;
-    use std::collections::HashMap;
+    use proptest::prelude::*;
 
     #[derive(Deserialize)]
     pub struct Foo {
@@ -32,16 +32,12 @@ mod tests {
         pub date: NaiveDate,
     }
 
-    #[test]
-    fn test_de_valid_input() {
-        let mut valid_input: HashMap<&str, NaiveDate> = HashMap::new();
-        valid_input.insert("2019", NaiveDate::from_ymd(2019, 1, 1));
-        valid_input.insert("2019-3", NaiveDate::from_ymd(2019, 3, 1));
-        valid_input.insert("2019-12-1", NaiveDate::from_ymd(2019, 12, 1));
-        for (&date_string, &date) in valid_input.iter() {
-            let yaml: String = format!("date: {}", date_string);
-            let result: Foo = serde_yaml::from_str(&yaml).unwrap();
-            assert_eq!(result.date, date);
+    proptest! {
+        #[test]
+        fn parses_all_valid_dates(y in 0u32..10000, m in 1u32..13, d in 1u32..29) {
+            let date_string = format!("{:04}-{:02}-{:02}", y, m, d);
+            let yaml = format!("date: {}", &date_string);
+            let _: Foo = serde_yaml::from_str(&yaml).unwrap();
         }
     }
 
