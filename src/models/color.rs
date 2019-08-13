@@ -22,9 +22,9 @@ impl FromStr for Color {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut values: [u8; 3] = [ 0; 3 ];
-        for (i, c) in s.split_terminator(",").enumerate() {
+        for (i, c) in s.split_terminator(",".trim()).enumerate() {
             match i {
-                0|1|2 => values[i] = u8::from_str(c)?,
+                0|1|2 => values[i] = u8::from_str(c.trim())?,
                 _ => return Err(ParseColorError::WrongNumberOfComponents)
             }
         }
