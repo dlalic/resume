@@ -34,7 +34,7 @@ mod tests {
 
     proptest! {
         #[test]
-        fn parses_all_valid_dates(y in 1u32..10000, m in 1u32..13, d in 1u32..29) {
+        fn parses_all_valid_dates(y in 0u32..10000, m in 1u32..13, d in 1u32..29) {
             let date_string = format!("{:04}-{:02}-{:02}", y, m, d);
             let yaml = format!("date: {}", &date_string);
             let _: Foo = serde_yaml::from_str(&yaml).unwrap();
