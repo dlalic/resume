@@ -24,3 +24,25 @@ where
     };
     Ok(color)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::serializers::color_serializer;
+    use proptest::prelude::*;
+
+    #[derive(Deserialize)]
+    pub struct Foo {
+        #[serde(with = "color_serializer")]
+        pub color: Color,
+    }
+
+    proptest! {
+        #[test]
+        fn parses_all_valid_colors(r in 0u8..255, g in 0u8..255, b in 0u8..255) {
+            let color_string = format!("{}, {}, {}", r, g, b);
+            let yaml: String = format!("color: {}", &color_string);
+            let _result: Foo = serde_yaml::from_str(&yaml).unwrap();
+        }
+    }
+}
