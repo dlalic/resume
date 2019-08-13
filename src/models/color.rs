@@ -3,9 +3,9 @@ use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Color {
-    pub(crate) red: u32,
-    pub(crate) green: u32,
-    pub(crate) blue: u32,
+    pub(crate) red: u8,
+    pub(crate) green: u8,
+    pub(crate) blue: u8,
 }
 
 impl fmt::Display for Color {
