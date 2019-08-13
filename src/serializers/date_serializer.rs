@@ -5,18 +5,18 @@ pub(crate) fn deserialize<'de, D>(deserializer: D) -> Result<NaiveDate, D::Error
 where
     D: Deserializer<'de>,
 {
-    let raw_string: String = String::deserialize(deserializer)?;
+    let raw_string = String::deserialize(deserializer)?;
     // Sticking to ISO 8601, as guessing the date format looks like a nightmare:
     // https://github.com/dateutil/dateutil/blob/master/dateutil/parser/isoparser.py
-    let delimiter: &str = "-";
+    let delimiter = "-";
     let mut components: Vec<&str> = raw_string.split(delimiter).collect();
     // Per chrono documentation, "Out-of-bound dates or insufficient fields are errors."
     // Hence, dates missing %m or %d need to be appended with missing values
     while components.len() < 3 {
         components.push("1");
     }
-    let format: String = String::from("%Y %m %d");
-    let date_string: String = components.join(" ");
+    let format = String::from("%Y %m %d");
+    let date_string = components.join(" ");
     NaiveDate::parse_from_str(&date_string, &format).map_err(serde::de::Error::custom)
 }
 
@@ -48,9 +48,9 @@ mod tests {
     #[test]
     #[should_panic]
     fn test_de_invalid_input() {
-        let invalid_inputs: Vec<&str> = vec!["2019 3", "34-56-44", "2019.6.1"];
+        let invalid_inputs= vec!["2019 3", "34-56-44", "2019.6.1"];
         for date_string in invalid_inputs {
-            let yaml: String = format!("date: {}", date_string);
+            let yaml = format!("date: {}", date_string);
             let _: Foo = serde_yaml::from_str(&yaml).unwrap();
         }
     }
