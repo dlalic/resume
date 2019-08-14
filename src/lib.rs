@@ -7,7 +7,10 @@ use std::fs;
 use std::fs::File;
 use std::io::Write;
 
-mod models;
+// TODO: The module shouldn't be public,
+//       but #[cfg(bench)] doesn't seem to do the trick.
+pub mod models;
+
 mod serializers;
 
 pub fn run(filename: String) -> Result<(), Box<dyn Error>> {
