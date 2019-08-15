@@ -9,8 +9,8 @@ This is not a serious project, more of a `Rust` exercise. The goal is to have a 
 
 ### `cargo run tex`
 
-Outputs a `output.tex` file that renders to the below pdf based on the data in [`examples/resume.yaml`](examples/resume.yaml).
+Outputs a `output.tex` file that renders to the below pdf based on the data in [`examples/resume.yaml`](examples/resume.yaml). The fonts used are located in `examples/fonts` directory and licensed under [`SIL Open Font License`](examples/fonts/SIL Open Font License.txt).
 
 ![resume](examples/resume.jpg)
 
-Didn't use [`tectonic`](https://github.com/tectonic-typesetting/tectonic/) due to external dependencies, render the output with local `XeLaTeX` due to custom font usage.
+Didn't use [`tectonic`](https://github.com/tectonic-typesetting/tectonic/) due to its external dependencies, render the output with local `XeLaTeX` due to custom font usage.
