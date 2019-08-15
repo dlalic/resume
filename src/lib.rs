@@ -1,25 +1,20 @@
-extern crate askama;
-
-use crate::models::resume::Resume;
-use askama::Template;
+use crate::integrations::tex::execute;
+use clap::ArgMatches;
 use std::error::Error;
-use std::fs;
-use std::fs::File;
-use std::io::Write;
 
+mod integrations;
 // TODO: The module shouldn't be public,
 //       but #[cfg(bench)] doesn't seem to do the trick.
 pub mod models;
-
 mod serializers;
 
-pub fn run(filename: String) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(filename)?;
-    let resume: Resume = serde_yaml::from_str(&contents).unwrap();
-    let mut file = File::create("output.tex")?;
-    match file.write_all(&resume.render().unwrap().as_bytes()) {
-        Err(why) => panic!("Couldn't write to disk: {}", why.description()),
-        Ok(_) => println!("Done!"),
+pub fn run(matches: &ArgMatches, config: &str) -> Result<(), Box<dyn Error>> {
+    if let Some(_) = matches.subcommand_matches("tex") {
+        if let Err(e) = execute(config.to_string()) {
+            println!("{:?}", e);
+        }
+    } else {
+        println!("Please specify a subcommand. Use --help for help.");
     }
     Ok(())
 }

@@ -1,0 +1,20 @@
+name: resume
+args:
+    - config:
+        value_name: FILE
+        help: A resume yaml specification, see examples/resume.yaml
+        takes_value: true
+subcommands:
+    - tex:
+        about: Render the resume to a .tex file
+    - xing:
+        about: Publish the resume on Xing
+        args:
+            - username:
+                help: Xing username
+                short: u
+                long: username
+            - password:
+                help: Xing password
+                short: p
+                long: password
