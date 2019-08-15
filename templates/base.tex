@@ -7,6 +7,10 @@
 \usepackage{wrapfig}
 \usepackage{enumitem}
 \defaultfontfeatures{Mapping=tex-text}
-\setromanfont[Mapping=tex-text]{<<config.font>>}
+\setmainfont{<<config.font>>}[
+    Path = <<config.font_location>>,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+]
 \setcounter{secnumdepth}{0}
 \setlist[itemize]{before=\small}
