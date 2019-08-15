@@ -6,9 +6,18 @@
 <<person.location>>\\
 <<person.contact>>
 
+\vspace{0.05\textheight}
+​
+\hspace*{-\parindent}
+\begin{minipage}[t]{0.6\textwidth}
 <% include "employment.tex" %>
 <% include "education.tex" %>
+\end{minipage}
+\hspace*{-\parindent}
+\hspace{0.05\textwidth}
+\begin{minipage}[t]{0.395\textwidth}
 <% include "skills.tex" %>
 <% include "experience.tex" %>
+\end{minipage}
 
 \end{document}
