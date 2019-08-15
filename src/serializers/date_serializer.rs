@@ -59,7 +59,6 @@ mod tests {
         #[test]
         #[should_panic]
         fn crashes_on_wrong_delimiter(s in "[0-9]{4}[^-][0-9]{2}[^-][0-9]{2}") {
-            println!("{:?}", s);
             let _: Foo = yaml_value(&s);
         }
     }
