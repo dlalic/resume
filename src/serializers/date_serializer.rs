@@ -15,9 +15,9 @@ where
     while components.len() < 3 {
         components.push("1");
     }
-    let format = String::from("%Y %m %d");
+    let format = "%Y %m %d";
     let date_string = components.join(" ");
-    NaiveDate::parse_from_str(&date_string, &format).map_err(serde::de::Error::custom)
+    NaiveDate::parse_from_str(&date_string, format).map_err(serde::de::Error::custom)
 }
 
 #[cfg(test)]
@@ -32,22 +32,34 @@ mod tests {
         pub date: NaiveDate,
     }
 
-    proptest! {
-        #[test]
-        fn parses_all_valid_dates(y in 0u32..10000, m in 1u32..13, d in 1u32..29) {
-            let date_string = format!("{:04}-{:02}-{:02}", y, m, d);
-            let yaml = format!("date: {}", &date_string);
-            let _: Foo = serde_yaml::from_str(&yaml).unwrap();
-        }
+    fn yaml_value(date_string: &str) -> Foo {
+        let yaml = format!("date: {}", date_string);
+        let foo: Foo = serde_yaml::from_str(&yaml).unwrap();
+        foo
     }
 
-    #[test]
-    #[should_panic]
-    fn test_de_invalid_input() {
-        let invalid_inputs= vec!["2019 3", "34-56-44", "2019.6.1"];
-        for date_string in invalid_inputs {
-            let yaml = format!("date: {}", date_string);
-            let _: Foo = serde_yaml::from_str(&yaml).unwrap();
+    proptest! {
+        #[test]
+        fn parses_all_valid_dates(component_count in 1usize..3, y in 0u32..10000, m in 1u32..13, d in 1u32..29) {
+            let date_string = format!("{:04}-{:02}-{:02}", y, m ,d);
+            let (first, _) = date_string.split_at(component_count * 4);
+            let mut result = first.to_string();
+            if result.ends_with("-") {
+                result.pop();
+            }
+            let _: Foo = yaml_value(&result);
+        }
+
+        #[test]
+        #[should_panic]
+        fn crashes_on_invalid_characters(s in "\\PC*") {
+            let _: Foo = yaml_value(&s);
+        }
+
+        #[test]
+        #[should_panic]
+        fn crashes_on_wrong_delimiter(s in "[0-9]{4}[^-][0-9]{2}[^-][0-9]{2}") {
+            let _: Foo = yaml_value(&s);
         }
     }
 }
