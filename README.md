@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dlalic/resume.svg?branch=master)](https://travis-ci.org/dlalic/resume)
 
-This is not a serious project, more of a `Rust` exercise. The goal is to have a resume structured in a human readable `yaml` and use it to populate `TeX`, LinkedIn, Xing and others. A similar project is [`pyresume`](https://github.com/waynr/pyresume).
+This is not a serious project, more of a `Rust` exercise. The goal is to have a resume structured in a human readable `yaml` and use it to populate `TeX` or social networks. A similar project is [`pyresume`](https://github.com/waynr/pyresume).
 
 
 ## Current integrations
