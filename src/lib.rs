@@ -1,5 +1,4 @@
 use crate::integrations::tex::execute;
-use clap::ArgMatches;
 use std::error::Error;
 
 mod integrations;
@@ -8,13 +7,14 @@ mod integrations;
 pub mod models;
 mod serializers;
 
-pub fn run(matches: &ArgMatches, config: &str) -> Result<(), Box<dyn Error>> {
-    if let Some(_) = matches.subcommand_matches("tex") {
-        if let Err(e) = execute(config.to_string()) {
-            println!("{:?}", e);
-        }
-    } else {
-        println!("Please specify a subcommand. Use --help for help.");
+pub enum Integration {
+    Tex,
+    Xing
+}
+
+pub fn run(int : Integration, config: &str) -> Result<String, Box<dyn Error>> {
+    match int {
+        Integration::Tex => execute(config),
+        Integration::Xing => panic!("not yet implemented")
     }
-    Ok(())
 }
