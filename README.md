@@ -9,7 +9,7 @@ This is not a serious project, more of a `Rust` exercise. The goal is to have a 
 
 ### `cargo run tex`
 
-Outputs a `output.tex` file that renders to the below pdf based on the data in [`examples/resume.yaml`](examples/resume.yaml). The fonts used are located in `examples/fonts` directory and licensed under [`SIL Open Font License`](examples/fonts/SIL Open Font License.txt).
+Outputs a `output.tex` file that renders to the below pdf based on the data in [`examples/resume.yaml`](examples/resume.yaml). The fonts used are located in `examples/fonts` directory and licensed under [`SIL Open Font License`](examples/fonts/SIL%20Open%20Font%20License.txt).
 
 ![resume](examples/resume.jpg)
 
