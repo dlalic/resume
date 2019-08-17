@@ -34,8 +34,7 @@ mod tests {
 
     fn yaml_value(date_string: &str) -> Foo {
         let yaml = format!("date: {}", date_string);
-        let foo: Foo = serde_yaml::from_str(&yaml).unwrap();
-        foo
+        serde_yaml::from_str(&yaml).unwrap()
     }
 
     proptest! {
