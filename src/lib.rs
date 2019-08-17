@@ -7,6 +7,7 @@ mod integrations;
 pub mod models;
 mod serializers;
 
+#[derive(Debug)]
 pub enum Integration {
     Tex,
     Xing
@@ -15,6 +16,6 @@ pub enum Integration {
 pub fn run(int : Integration, config: &str) -> Result<String, Box<dyn Error>> {
     match int {
         Integration::Tex => execute(config),
-        Integration::Xing => panic!("not yet implemented")
+        Integration::Xing => unimplemented!()
     }
 }
