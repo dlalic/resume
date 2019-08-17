@@ -1,0 +1,32 @@
+{
+
+  "manifest_version": 2,
+  "name": "Resume extension",
+  "description": "Determines input fields and offers suggestions",
+  "version": "1.0",
+  "applications": {
+    "gecko": {
+      "strict_min_version": "68.0"
+    }
+  },
+
+  "sidebar_action": {
+    "default_icon": "icons/resume.png",
+    "default_title" : "Resume",
+    "default_panel": "sidebar/panel.html"
+  },
+
+  "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"]
+  }],
+
+  "commands": {
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    }
+  }
+
+}
