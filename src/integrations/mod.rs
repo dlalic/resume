@@ -1,3 +1,3 @@
-pub mod executable;
+pub mod execute;
 pub mod sn;
 pub mod tex;

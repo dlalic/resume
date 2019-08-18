@@ -1,4 +1,4 @@
-use crate::integrations::executable::Executable;
+use crate::integrations::execute::Execute;
 use crate::integrations::sn::SnIntegration;
 use crate::integrations::tex::TexIntegration;
 use crate::models::resume::Resume;
