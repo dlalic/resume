@@ -7,14 +7,5 @@ args:
 subcommands:
     - tex:
         about: Render the resume to a .tex file
-    - xing:
-        about: Publish the resume on Xing
-        args:
-            - username:
-                help: Xing username
-                short: u
-                long: username
-            - password:
-                help: Xing password
-                short: p
-                long: password
+    - sn:
+        about: Publish the resume on social network
