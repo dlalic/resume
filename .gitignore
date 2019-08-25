@@ -1,4 +1,8 @@
 /target
 **/*.rs.bk
 /.idea
-output.*
+output.aux
+output.log
+output.pdf
+output.synctex.gz
+output.tex
