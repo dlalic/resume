@@ -15,7 +15,7 @@ serde_yaml = "0.8"
 
 [dev-dependencies]
 proptest = "0.9"
-criterion = "0.2"
+criterion = "0.3"
 
 [[bench]]
 name = "color"
