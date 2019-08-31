@@ -9,3 +9,11 @@ function handleMessage (request, sender, sendResponse) {
 }
 
 browser.runtime.onMessage.addListener(handleMessage)
+
+function copy(event) {
+  var copyText = event.target;
+  copyText.select();
+  document.execCommand("copy");
+}
+
+document.addEventListener("click", copy);

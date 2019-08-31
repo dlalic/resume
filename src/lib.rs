@@ -9,6 +9,7 @@ mod integrations;
 // TODO: The module shouldn't be public,
 //       but #[cfg(bench)] doesn't seem to do the trick.
 pub mod models;
+mod operations;
 mod serializers;
 
 #[derive(Debug)]

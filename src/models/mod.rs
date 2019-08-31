@@ -3,6 +3,8 @@ pub mod education;
 pub mod employment;
 pub mod experience;
 pub mod layout_config;
+pub mod native_manifest;
 pub mod person;
+pub mod reduced_resume;
 pub mod resume;
 pub mod skill;

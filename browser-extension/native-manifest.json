@@ -1,7 +1,0 @@
-{
-  "name": "resume",
-  "description": "Bridge between the browser extension and the Rust library",
-  "path": "/path/to/executable",
-  "type": "stdio",
-  "allowed_extensions": ["dlalic@users.noreply.github.com"]
-}
