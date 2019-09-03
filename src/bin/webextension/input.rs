@@ -6,15 +6,15 @@ use std::{error, fmt};
 
 #[derive(Debug)]
 pub(crate) enum InputError {
-    IOError,
-    JSONError,
+    Io(std::io::Error),
+    Json(serde_json::Error),
 }
 
 impl fmt::Display for InputError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            InputError::IOError => write!(f, "IO"),
-            InputError::JSONError => write!(f, "JSON"),
+            InputError::Io(ref err) => write!(f, "IO error: {}", err),
+            InputError::Json(ref err) => write!(f, "JSON error: {}", err),
         }
     }
 }
@@ -22,9 +22,15 @@ impl fmt::Display for InputError {
 impl error::Error for InputError {
     fn source(&self) -> Option<&(dyn error::Error + 'static)> {
         match *self {
-            InputError::IOError => None,
-            InputError::JSONError => None,
+            InputError::Io(ref err) => Some(err),
+            InputError::Json(ref err) => Some(err),
         }
+    }
+}
+
+impl From<std::io::Error> for InputError {
+    fn from(err: std::io::Error) -> Self {
+        InputError::Io(err)
     }
 }
 
@@ -40,14 +46,10 @@ pub(crate) struct Input {
 
 impl Input {
     pub(crate) fn read_from(input: &mut StdinLock) -> Result<Input, InputError> {
-        let length = input
-            .read_u32::<NativeEndian>()
-            .map_err(|_err| InputError::IOError)?;
+        let length = input.read_u32::<NativeEndian>()?;
         let mut message = input.take(length as u64);
         let mut buffer = Vec::with_capacity(length as usize);
-        message
-            .read_to_end(&mut buffer)
-            .map_err(|_err| InputError::IOError)?;
-        serde_json::from_slice(&buffer).map_err(|_err| InputError::JSONError)
+        message.read_to_end(&mut buffer)?;
+        serde_json::from_slice(&buffer).map_err(InputError::Json)
     }
 }
