@@ -2,7 +2,7 @@ use crate::serializers::date_serializer;
 use chrono::NaiveDate;
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct Employment {
     pub(crate) company: String,
     pub(crate) title: String,

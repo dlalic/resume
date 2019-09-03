@@ -1,8 +1,9 @@
 /* global browser, handleResponse, handleError */
 
-function onMouseUp (e) {
+function onMouseUp () {
   const activeInput = document.activeElement
-  if (!activeInput) {
+  const inputs = ['INPUT', 'TEXTAREA'];
+  if (!inputs.includes(activeInput.tagName)) {
     return
   }
   var sending = browser.runtime.sendMessage({
