@@ -6,15 +6,15 @@ use std::{error, fmt};
 
 #[derive(Debug)]
 pub(crate) enum InputError {
-    IOError(std::io::Error),
-    JSONError(serde_json::Error),
+    Io(std::io::Error),
+    Json(serde_json::Error),
 }
 
 impl fmt::Display for InputError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            InputError::IOError(ref err) => write!(f, "IO error: {}", err),
-            InputError::JSONError(ref err) => write!(f, "JSON error: {}", err),
+            InputError::Io(ref err) => write!(f, "IO error: {}", err),
+            InputError::Json(ref err) => write!(f, "JSON error: {}", err),
         }
     }
 }
@@ -22,15 +22,15 @@ impl fmt::Display for InputError {
 impl error::Error for InputError {
     fn source(&self) -> Option<&(dyn error::Error + 'static)> {
         match *self {
-            InputError::IOError(ref err) => Some(err),
-            InputError::JSONError(ref err) => Some(err),
+            InputError::Io(ref err) => Some(err),
+            InputError::Json(ref err) => Some(err),
         }
     }
 }
 
 impl From<std::io::Error> for InputError {
     fn from(err: std::io::Error) -> Self {
-        InputError::IOError(err)
+        InputError::Io(err)
     }
 }
 
@@ -50,6 +50,6 @@ impl Input {
         let mut message = input.take(length as u64);
         let mut buffer = Vec::with_capacity(length as usize);
         message.read_to_end(&mut buffer)?;
-        serde_json::from_slice(&buffer).map_err(InputError::JSONError)
+        serde_json::from_slice(&buffer).map_err(InputError::Json)
     }
 }
