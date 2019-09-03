@@ -14,7 +14,7 @@ impl Default for NativeManifest {
     fn default() -> Self {
         NativeManifest {
             name: "resume".to_string(),
-            description: "Bridge between the browser extension and the Rust librar".to_string(),
+            description: "Bridge between the browser extension and the Rust library".to_string(),
             path: "".to_string(),
             nm_type: "stdio".to_string(),
             // TODO: read from manifest.json instead of hardcoding
