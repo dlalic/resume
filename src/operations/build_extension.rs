@@ -1,7 +1,7 @@
-use std::error::Error;
+use failure::Error;
 use std::process::Command;
 
-pub(crate) fn build_extension() -> Result<(String), Box<dyn Error>> {
+pub(crate) fn build_extension() -> Result<(String), Error> {
     let output = Command::new("cargo")
         .arg("build")
         .arg("--release")

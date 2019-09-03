@@ -4,14 +4,14 @@ use crate::models::resume::Resume;
 use crate::operations::build_extension::build_extension;
 use crate::operations::render_template::render_template;
 use crate::operations::write_manifest::write_manifest;
-use std::error::Error;
+use failure::Error;
 use std::path::PathBuf;
 
 extern crate dirs;
 pub(crate) struct SnIntegration {}
 
 impl Execute for SnIntegration {
-    fn execute(resume: &Resume) -> Result<(String), Box<dyn Error>> {
+    fn execute(resume: &Resume) -> Result<(String), Error> {
         let reduced = ReducedResume::from(resume);
         let path: PathBuf = ["browser-extension", "sidebar", "panel.html"]
             .iter()
