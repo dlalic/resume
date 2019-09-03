@@ -28,6 +28,12 @@ impl error::Error for InputError {
     }
 }
 
+impl From<std::io::Error> for InputError {
+    fn from(err: std::io::Error) -> Self {
+        InputError::IOError(err)
+    }
+}
+
 #[derive(Deserialize)]
 pub(crate) struct Input {
     #[serde(rename = "id")]
@@ -40,14 +46,10 @@ pub(crate) struct Input {
 
 impl Input {
     pub(crate) fn read_from(input: &mut StdinLock) -> Result<Input, InputError> {
-        let length = input
-            .read_u32::<NativeEndian>()
-            .map_err(InputError::IOError)?;
+        let length = input.read_u32::<NativeEndian>()?;
         let mut message = input.take(length as u64);
         let mut buffer = Vec::with_capacity(length as usize);
-        message
-            .read_to_end(&mut buffer)
-            .map_err(InputError::IOError)?;
+        message.read_to_end(&mut buffer)?;
         serde_json::from_slice(&buffer).map_err(InputError::JSONError)
     }
 }
