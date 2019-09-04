@@ -1,6 +1,6 @@
 use crate::models::native_manifest::NativeManifest;
 use crate::operations::write_to_file::write_to_file;
-use std::error::Error;
+use failure::Error;
 use std::path::PathBuf;
 
 fn determine_manifest_path() -> PathBuf {
@@ -22,15 +22,17 @@ fn determine_manifest_path() -> PathBuf {
     path
 }
 
-fn determine_executable_path() -> Result<(String), Box<dyn Error>> {
+fn determine_executable_path() -> Result<(String), Error> {
     let path: PathBuf = ["target", "release", "browser-extension"].iter().collect();
     let abs_path = path.canonicalize()?;
-    let error = format!("Cannot convert path {} to string.", path.display());
-    let os_str = abs_path.into_os_string().into_string().expect(&error);
-    Ok(os_str)
+    let into = abs_path.into_os_string();
+    match into.into_string() {
+        Ok(result) => Ok(result),
+        Err(_) => Err(format_err!("Cannot convert path {} to string.", path.display())),
+    }
 }
 
-pub(crate) fn write_manifest() -> Result<(String), Box<dyn Error>> {
+pub(crate) fn write_manifest() -> Result<(String), Error> {
     let path = determine_manifest_path();
     let mut manifest = NativeManifest::default();
     manifest.path = determine_executable_path()?;

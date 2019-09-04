@@ -2,7 +2,10 @@ use crate::integrations::execute::Execute;
 use crate::integrations::sn::SnIntegration;
 use crate::integrations::tex::TexIntegration;
 use crate::models::resume::Resume;
-use std::error::Error;
+#[macro_use]
+extern crate failure;
+
+use failure::Error;
 use std::fs;
 
 mod integrations;
@@ -18,7 +21,7 @@ pub enum Integration {
     Sn,
 }
 
-pub fn run(int: Integration, config: &str) -> Result<String, Box<dyn Error>> {
+pub fn run(int: Integration, config: &str) -> Result<String, Error> {
     let contents = fs::read_to_string(config)?;
     let resume: Resume = serde_yaml::from_str(&contents)?;
     match int {
