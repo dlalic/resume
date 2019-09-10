@@ -2,11 +2,25 @@
     <div class="col">
         <h4>Education</h4>
     </div>
+    <div class="col">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a id="education__previous" class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a id="education__next" class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 <div class="row">
     <div class="col">
-        <form id="education">
-            <% for education in educations %>
+        <% for education in educations %>
+        <form class="education" id='<<"education__{:?}"|format(loop.index0)>>'>
             <div class="form-group">
                 <textarea class="form-control" rows="1" readonly><<education.institution>></textarea>
             </div>
@@ -19,7 +33,7 @@
             <div class="form-group">
                 <textarea class="form-control" rows="1" readonly><<education.end>></textarea>
             </div>
-            <% endfor %>
         </form>
+        <% endfor %>
     </div>
 </div>
