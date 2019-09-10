@@ -1,19 +1,34 @@
 /* global browser */
 
-const content = document.querySelector('#content')
-const suggestions = document.querySelector('#suggestions')
+// Settings
+
+const clipboardButton = document.getElementById('clipboard')
+clipboardButton.addEventListener('click', (event) => {
+  // TODO: implement clipboard setting
+})
+
+const suggestionsButton = document.getElementById('suggestions')
+suggestionsButton.addEventListener('click', (event) => {
+  // TODO: implement suggestions setting
+})
+
+// Suggestions
 
 function handleMessage (request, sender, sendResponse) {
-  suggestions.style.display = 'block'
-  content.innerHTML = 'Active element is: id=' + request.id + ' type=' + request.type + ' name=' + request.name
+  // TODO: display suggestion
 }
 
 browser.runtime.onMessage.addListener(handleMessage)
 
+// Pagination
+
 var currentEmploymentsPage = 0
 var currentEducationsPage = 0
 
-const pagination = [{ id: 'employment', counter: currentEmploymentsPage }, { id: 'education', counter: currentEducationsPage }]
+const pagination = [
+  { id: 'employment', counter: currentEmploymentsPage },
+  { id: 'education', counter: currentEducationsPage }
+]
 
 pagination.forEach(function (element) {
   const previousButton = document.getElementById(element.id + '__previous')
@@ -55,12 +70,14 @@ window.addEventListener('load', () => {
   pagination.forEach(function (element) {
     changePage(element.id, element.counter)
   })
+  // TODO: load default settings
 })
+
+// Clipboard
 
 function copy (event) {
   if (event.target.tagName === 'TEXTAREA') {
-    var copyText = event.target
-    copyText.select()
+    event.target.select()
     document.execCommand('copy')
   }
 }
