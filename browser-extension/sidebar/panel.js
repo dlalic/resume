@@ -3,18 +3,18 @@
 // Settings
 
 const clipboardButton = document.getElementById('clipboard')
-clipboardButton.addEventListener('click', (event) => {
+clipboardButton.addEventListener('click', () => {
   // TODO: implement clipboard setting
 })
 
 const suggestionsButton = document.getElementById('suggestions')
-suggestionsButton.addEventListener('click', (event) => {
+suggestionsButton.addEventListener('click', () => {
   // TODO: implement suggestions setting
 })
 
 // Suggestions
 
-function handleMessage (request, sender, sendResponse) {
+function handleMessage () {
   // TODO: display suggestion
 }
 
