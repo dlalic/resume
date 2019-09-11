@@ -6,4 +6,9 @@ output.log
 output.pdf
 output.synctex.gz
 output.tex
-browser-extension/sidebar/panel.html
+/browser-extension/sidebar/index.html
+/browser-extension/node_modules
+/browser-extension/target
+/browser-extension/dist
+/browser-extension/pkg
+/browser-extension/wasm-pack.log

@@ -11,7 +11,7 @@ pub(crate) struct SnIntegration {}
 impl Execute for SnIntegration {
     fn execute(resume: &Resume) -> Result<(String), Error> {
         let reduced = ReducedResume::from(resume);
-        let path: PathBuf = ["browser-extension", "sidebar", "panel.html"]
+        let path: PathBuf = ["browser-extension", "sidebar", "index.html"]
             .iter()
             .collect();
         render_template(&reduced, &path)?;

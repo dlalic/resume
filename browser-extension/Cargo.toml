@@ -1,0 +1,32 @@
+[package]
+name = "browser-extension"
+version = "0.1.0"
+authors = ["Dunja Lalic"]
+categories = ["wasm"]
+readme = "README.md"
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+
+[features]
+#default = ["wee_alloc"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+gloo-events = { git = "https://github.com/rustwasm/gloo" }
+wee_alloc = { version = "0.4.2", optional = true }
+web-sys = {version = "0.3", features = ["Document", "Element", "Event", "EventTarget", "HtmlCollection", "HtmlDocument", "HtmlElement", "HtmlTextAreaElement", "Node", "Window", "console"]}
+
+[target."cfg(debug_assertions)".dependencies]
+console_error_panic_hook = "0.1"
+
+[dev-dependencies]
+wasm-bindgen-test = "0.2"
+futures = "0.1"
+js-sys = "0.3"
+wasm-bindgen-futures = "0.3"
+
