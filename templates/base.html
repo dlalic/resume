@@ -9,58 +9,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<div id="container">
-    <p>To get started click on an input field.</p> Click on the field ... <img src="../img/clipboard.svg" alt="clipboard">
-    <div id="content"></div>
-    <h4>Employments</h4>
-    <div id="employments">
-        <form>
-        <% for employment in employments %>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<employment.company>></textarea>
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<employment.title>></textarea>
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<employment.start>></textarea>
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<employment.end>></textarea>
-            </div>
-            <% for keyword in employment.keywords %>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<keyword>></textarea>
-            </div>
-            <% endfor %>
-            <% for point in employment.points %>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<point>></textarea>
-            </div>
-            <% endfor %>
-        <% endfor %>
-        </form>
-    </div>
-    <h4>Education</h4>
-    <div id="education">
-        <form>
-        <% for education in educations %>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<education.institution>></textarea>
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<education.title>></textarea>
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<education.start>></textarea>
-            </div>
-            <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<education.end>></textarea>
-            </div>
-        <% endfor %>
-        </form>
-    </div>
-</div>
-<script src="panel.js"></script>
+    <main class="main">
+        <div class="container">
+            <% include "settings.html" %>
+            <hr>
+            <% include "employment.html" %>
+            <hr>
+            <% include "education.html" %>
+        </div>
+    </main>
+    <script src="panel.js"></script>
 </body>
 </html>
