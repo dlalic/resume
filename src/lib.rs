@@ -2,7 +2,6 @@ use crate::integrations::execute::Execute;
 use crate::integrations::sn::SnIntegration;
 use crate::integrations::tex::TexIntegration;
 use crate::models::resume::Resume;
-#[macro_use]
 extern crate failure;
 
 use failure::Error;
