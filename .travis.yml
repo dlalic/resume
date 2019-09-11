@@ -11,3 +11,6 @@ after_success:
   - if [ "$TRAVIS_RUST_VERSION" == "stable" ]; then
     cargo bench;
     fi
+  - npm i -g npm@6.9.0
+  - cd broswer-extension
+  - npm test -- --firefox
