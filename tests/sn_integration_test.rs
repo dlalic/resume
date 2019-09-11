@@ -6,7 +6,7 @@ fn it_generates_correct_html_file() {
     let config = "examples/resume.yaml";
     let run_result = run(Integration::Sn, &config);
     assert!(run_result.is_ok());
-    let result = fs::read_to_string("browser-extension/sidebar/panel.html");
+    let result = fs::read_to_string("browser-extension/sidebar/index.html");
     let expected = fs::read_to_string("tests/fixtures/expected.html");
     assert!(result.is_ok() && expected.is_ok());
     assert_eq!(result.ok(), expected.ok())
