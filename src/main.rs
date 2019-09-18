@@ -5,7 +5,7 @@ use clap::App;
 use resume::Integration;
 
 fn from_subcommand(matches: &clap::ArgMatches) -> Option<Integration> {
-    match Option::from(matches.subcommand_name()) {
+    match matches.subcommand_name() {
         Some("tex") => Some(Integration::Tex),
         Some("sn") => Some(Integration::Sn),
         _ => None,
