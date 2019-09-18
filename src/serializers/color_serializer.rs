@@ -32,7 +32,7 @@ mod tests {
     }
 
     #[test]
-    #[should_panic(expected="wrong number of color components")]
+    #[should_panic(expected = "wrong number of color components")]
     fn chokes_on_wrong_number_of_components() {
         let _: Foo = serde_yaml::from_str("color: 1").unwrap();
         let _: Foo = serde_yaml::from_str("color: 1, 2").unwrap();
@@ -40,14 +40,14 @@ mod tests {
     }
 
     #[test]
-    #[should_panic(expected="number too large")]
+    #[should_panic(expected = "number too large")]
     fn chokes_on_out_of_range_values() {
         let _: Foo = serde_yaml::from_str("color: 0, 128, 256").unwrap();
         let _: Foo = serde_yaml::from_str("color: -1, 0, 1").unwrap();
     }
 
     #[test]
-    #[should_panic(expected="invalid digit found")]
+    #[should_panic(expected = "invalid digit found")]
     fn chokes_on_invalid_chars() {
         let _: Foo = serde_yaml::from_str("color: white").unwrap();
         let _: Foo = serde_yaml::from_str("color: #aabbcc").unwrap();
