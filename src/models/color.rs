@@ -23,7 +23,7 @@ impl FromStr for Color {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut values: [u8; 3] = [0; 3];
         let mut num_values = 0;
-        for (i, c) in s.split_terminator(",").enumerate() {
+        for (i, c) in s.split_terminator(',').enumerate() {
             num_values += 1;
             match i {
                 0 | 1 | 2 => values[i] = u8::from_str(c.trim())?,
