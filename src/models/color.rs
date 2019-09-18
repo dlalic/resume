@@ -1,7 +1,5 @@
 use core::fmt;
 use serde::Deserialize;
-use std::error;
-use std::num::ParseIntError;
 use std::str::FromStr;
 
 #[derive(Debug, Deserialize)]
@@ -18,7 +16,7 @@ impl fmt::Display for Color {
 }
 
 impl FromStr for Color {
-    type Err = ParseColorError;
+    type Err = failure::Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut values: [u8; 3] = [0; 3];
@@ -27,7 +25,7 @@ impl FromStr for Color {
             num_values += 1;
             match i {
                 0 | 1 | 2 => values[i] = u8::from_str(c.trim())?,
-                _ => return Err(ParseColorError::WrongNumberOfComponents),
+                _ => return Err(format_err!("too many color components, expected 3")),
             }
         }
         match num_values {
@@ -36,39 +34,7 @@ impl FromStr for Color {
                 green: values[1],
                 blue: values[2],
             }),
-            _ => Err(ParseColorError::WrongNumberOfComponents),
+            _ => Err(format_err!("too few color components, expected 3")),
         }
-    }
-}
-
-#[derive(Debug)]
-pub enum ParseColorError {
-    WrongNumberOfComponents,
-    Parse(ParseIntError),
-}
-
-impl fmt::Display for ParseColorError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        match *self {
-            ParseColorError::WrongNumberOfComponents => {
-                write!(f, "wrong number of color components, 3 expected")
-            }
-            ParseColorError::Parse(ref e) => e.fmt(f),
-        }
-    }
-}
-
-impl error::Error for ParseColorError {
-    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
-        match *self {
-            ParseColorError::WrongNumberOfComponents => None,
-            ParseColorError::Parse(ref e) => Some(e),
-        }
-    }
-}
-
-impl From<ParseIntError> for ParseColorError {
-    fn from(err: ParseIntError) -> ParseColorError {
-        ParseColorError::Parse(err)
     }
 }

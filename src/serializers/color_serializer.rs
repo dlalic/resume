@@ -32,10 +32,15 @@ mod tests {
     }
 
     #[test]
-    #[should_panic(expected = "wrong number of color components")]
-    fn chokes_on_wrong_number_of_components() {
+    #[should_panic(expected = "too few color components")]
+    fn chokes_on_too_few_number_of_components() {
         let _: Foo = serde_yaml::from_str("color: 1").unwrap();
         let _: Foo = serde_yaml::from_str("color: 1, 2").unwrap();
+    }
+
+    #[test]
+    #[should_panic(expected = "too many color components")]
+    fn chokes_on_too_many_number_of_components() {
         let _: Foo = serde_yaml::from_str("color: 1, 2, 3, 4").unwrap();
     }
 
