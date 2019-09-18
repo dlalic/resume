@@ -10,8 +10,11 @@ matrix:
   include:
 
   - rust: stable
+    before_script:
+    - rustup component add rustfmt
     after_success:
     - cargo bench
+    - cargo fmt --all -- --check
 
   - rust: beta
 
