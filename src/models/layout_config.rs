@@ -1,4 +1,5 @@
 use serde::Deserialize;
+use std::path::PathBuf;
 
 #[derive(Debug, Deserialize)]
 pub struct LayoutConfig {
@@ -9,8 +10,9 @@ pub struct LayoutConfig {
 
 impl Default for LayoutConfig {
     fn default() -> Self {
+        let path: PathBuf = [".", "examples", "fonts"].iter().collect();
         LayoutConfig {
-            font_location: "./examples/fonts/".to_string(),
+            font_location: path.into_os_string().into_string().unwrap(),
             font: "FiraSans".to_string(),
             font_size: "12pt".to_string(),
         }
