@@ -3,56 +3,35 @@
 // Settings
 
 const clipboardButton = document.getElementById('clipboard')
-clipboardButton.addEventListener('click', () => {
-  // TODO: implement clipboard setting
-})
-
 const suggestionsButton = document.getElementById('suggestions')
-suggestionsButton.addEventListener('click', () => {
-  // TODO: implement suggestions setting
-})
-
-// Suggestions
-
-function handleMessage () {
-  // TODO: display suggestion
-}
-
-browser.runtime.onMessage.addListener(handleMessage)
 
 // Pagination
 
-var currentEmploymentsPage = 0
-var currentEducationsPage = 0
-
 const pagination = [
-  { id: 'employment', counter: currentEmploymentsPage },
-  { id: 'education', counter: currentEducationsPage }
+  { class: 'employment', counter: 0 },
+  { class: 'education', counter: 0 }
 ]
 
-pagination.forEach(function (element) {
-  const previousButton = document.getElementById(element.id + '__previous')
+pagination.forEach(function (paginatedElement) {
+  const previousButton = document.getElementById(paginatedElement.class + '__previous')
   previousButton.addEventListener('click', (event) => {
     event.preventDefault()
-    element.counter--
-    element.counter = changePage(element.id, element.counter)
+    paginatedElement.counter--
+    paginatedElement.counter = changePage(paginatedElement.class, paginatedElement.counter)
   })
 
-  const nextButton = document.getElementById(element.id + '__next')
+  const nextButton = document.getElementById(paginatedElement.class + '__next')
   nextButton.addEventListener('click', (event) => {
     event.preventDefault()
-    element.counter++
-    element.counter = changePage(element.id, element.counter)
+    paginatedElement.counter++
+    paginatedElement.counter = changePage(paginatedElement.class, paginatedElement.counter)
   })
 })
 
 function changePage (elementClass, page) {
   const elements = document.getElementsByClassName(elementClass)
-  if (page < 0) {
-    page = 0
-  } else if (page > elements.length - 1) {
-    page = elements.length - 1
-  }
+  page = Math.max(page, 0)
+  page = Math.min(page, elements.length - 1)
   for (var i = 0; i < elements.length; i++) {
     const element = document.getElementById(elementClass + '__' + i)
     if (element) {
@@ -68,18 +47,48 @@ function changePage (elementClass, page) {
 
 window.addEventListener('load', () => {
   pagination.forEach(function (element) {
-    changePage(element.id, element.counter)
+    changePage(element.class, element.counter)
   })
-  // TODO: load default settings
+  clipboardButton.checked = true
+  suggestionsButton.checked = true
 })
 
 // Clipboard
 
 function copy (event) {
-  if (event.target.tagName === 'TEXTAREA') {
+  if (event.target.tagName === 'TEXTAREA' && clipboardButton.checked) {
     event.target.select()
     document.execCommand('copy')
   }
 }
 
 document.addEventListener('click', copy)
+
+// Suggestions
+
+function handleMessage (message) {
+  if (!suggestionsButton.checked) {
+    return
+  }
+  const textAreas = [...document.getElementsByTagName('textarea')]
+  textAreas.forEach((textArea) => {
+    textArea.classList.remove('is-valid')
+    // TODO: investigate and implement possible values other than 'company' etc
+    const fieldType = textArea.id.split('__')[0]
+    if (!fieldType) {
+      return
+    }
+    for (const [, value] of Object.entries(message)) {
+      if (value.includes(fieldType)) {
+        const elementClass = textArea.parentNode.parentNode.className
+        const paginatedElement = pagination.find(o => o.class === elementClass)
+        const current = paginatedElement.counter
+        const element = document.getElementById(fieldType + '__' + current)
+        element.classList.add('is-valid')
+        break
+      }
+    }
+  })
+}
+
+browser.runtime.onMessage.addListener(handleMessage)
