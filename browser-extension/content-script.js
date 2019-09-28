@@ -2,7 +2,7 @@
 
 function onMouseUp () {
   const activeInput = document.activeElement
-  const inputs = ['INPUT', 'TEXTAREA'];
+  const inputs = ['INPUT', 'TEXTAREA']
   if (!inputs.includes(activeInput.tagName)) {
     return
   }

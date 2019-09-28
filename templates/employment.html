@@ -22,16 +22,16 @@
         <% for employment in employments %>
         <form class="employment" id='<<"employment__{:?}"|format(loop.index0)>>'>
             <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<employment.company>></textarea>
+                <textarea id='<<"company__{:?}"|format(loop.index0)>>' class="form-control" rows="1" readonly><<employment.company>></textarea>
             </div>
             <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<employment.title>></textarea>
+                <textarea id='<<"title__{:?}"|format(loop.index0)>>' class="form-control" rows="1" readonly><<employment.title>></textarea>
             </div>
             <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<employment.start>></textarea>
+                <textarea id='<<"start__{:?}"|format(loop.index0)>>' class="form-control" rows="1" readonly><<employment.start>></textarea>
             </div>
             <div class="form-group">
-                <textarea class="form-control" rows="1" readonly><<employment.end>></textarea>
+                <textarea id='<<"end__{:?}"|format(loop.index0)>>' class="form-control" rows="1" readonly><<employment.end>></textarea>
             </div>
             <% for keyword in employment.keywords %>
             <div class="form-group">
