@@ -1,3 +1,3 @@
 pub mod execute;
-pub mod sn;
+pub mod browser_extension;
 pub mod tex;

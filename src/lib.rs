@@ -1,5 +1,5 @@
 use crate::integrations::execute::Execute;
-use crate::integrations::sn::SnIntegration;
+use crate::integrations::browser_extension::BrowserExtensionIntegration;
 use crate::integrations::tex::TexIntegration;
 use crate::models::resume::Resume;
 #[macro_use]
@@ -18,7 +18,7 @@ mod serializers;
 #[derive(Debug)]
 pub enum Integration {
     Tex,
-    Sn,
+    BrowserExtension,
 }
 
 pub fn run(int: Integration, config: &str) -> Result<String, Error> {
@@ -26,6 +26,6 @@ pub fn run(int: Integration, config: &str) -> Result<String, Error> {
     let resume: Resume = serde_yaml::from_str(&contents)?;
     match int {
         Integration::Tex => TexIntegration::execute(&resume),
-        Integration::Sn => SnIntegration::execute(&resume),
+        Integration::BrowserExtension => BrowserExtensionIntegration::execute(&resume),
     }
 }

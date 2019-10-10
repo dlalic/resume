@@ -7,5 +7,5 @@ args:
 subcommands:
     - tex:
         about: Render the resume to a .tex file
-    - sn:
-        about: Publish the resume on social network
+    - be:
+        about: Render the browser extension

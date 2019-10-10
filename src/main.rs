@@ -7,7 +7,7 @@ use resume::Integration;
 fn from_subcommand(matches: &clap::ArgMatches) -> Option<Integration> {
     match matches.subcommand_name() {
         Some("tex") => Some(Integration::Tex),
-        Some("sn") => Some(Integration::Sn),
+        Some("be") => Some(Integration::BrowserExtension),
         _ => None,
     }
 }
