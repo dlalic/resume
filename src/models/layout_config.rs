@@ -10,7 +10,7 @@ pub struct LayoutConfig {
 
 impl Default for LayoutConfig {
     fn default() -> Self {
-        let path: PathBuf = [".", "examples", "fonts"].iter().collect();
+        let path: PathBuf = [".", "examples", "fonts", ""].iter().collect();
         LayoutConfig {
             font_location: path.into_os_string().into_string().unwrap(),
             font: "FiraSans".to_string(),
