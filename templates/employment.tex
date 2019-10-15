@@ -3,10 +3,10 @@
 \begin{description}
     \item [<<employment.company>>] <<employment.title>>, <<employment.duration()>>
     \item [] \footnotesize\textsl{
-    <% for keyword in employment.keywords %> <<keyword>> <% endfor %>
+    <% for keyword in employment.keywords %> <<keyword>><% if !loop.last %>,<% endif %> <% endfor %>
     }
 \end{description}
-\begin{itemize}[leftmargin=0.05\textwidth]
+\begin{itemize}
     <% for point in employment.points %>
     \item <<point>>
     <% endfor %>

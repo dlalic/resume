@@ -6,17 +6,16 @@
 <<person.location>>\\
 <<person.contact>>
 
-\vspace{0.05\textheight}
-​
-\hspace*{-0.05\textwidth}
-\begin{minipage}[t]{0.6\textwidth}
 <% include "employment.tex" %>
 <% include "education.tex" %>
+
+\vspace{\baselineskip}
+\noindent
+\begin{minipage}[t]{0.4\textwidth}
+<% include "skills.tex" %>
 \end{minipage}
 \noindent
-\hspace{0.05\textwidth}
-\begin{minipage}[t]{0.395\textwidth}
-<% include "skills.tex" %>
+\begin{minipage}[t]{0.6\textwidth}
 <% include "experience.tex" %>
 \end{minipage}
 

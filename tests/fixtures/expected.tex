@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[10pt]{article}
 \usepackage[margin=1.9cm]{geometry}
 \geometry{a4paper}
 \usepackage{graphicx}
@@ -9,11 +9,12 @@
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont{FiraSans}[
     Path = ./examples/fonts/,
-    UprightFont = *-Regular,
+    UprightFont = *-Light,
     BoldFont = *-Bold,
+    ItalicFont = *-Italic,
 ]
 \setcounter{secnumdepth}{0}
-\setlist[itemize]{before=\small}
+\setlist[itemize]{before=\small,leftmargin=*,noitemsep}
 
 \begin{document}
 
@@ -21,19 +22,15 @@
 Berlin, Germany\\
 foo@bar.com
 
-\vspace{0.05\textheight}
-​
-\hspace*{-0.05\textwidth}
-\begin{minipage}[t]{0.6\textwidth}
 \section{Employment}
 
 \begin{description}
     \item [Acme Corp] Code monkey, 2017 - 2019
     \item [] \footnotesize\textsl{
-     foo  bar  baz 
+     foo,  bar,  baz 
     }
 \end{description}
-\begin{itemize}[leftmargin=0.05\textwidth]
+\begin{itemize}
     
     \item Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     
@@ -46,14 +43,14 @@ foo@bar.com
 \begin{description}
     \item [Mars Univeristy]
 \end{description}
-\begin{itemize}[leftmargin=0.05\textwidth]
+\begin{itemize}
     \item dfg.gf.gdf.dfg.gdf.dgf, 2017 - 2017
 \end{itemize}
 
-\end{minipage}
+
+\vspace{\baselineskip}
 \noindent
-\hspace{0.05\textwidth}
-\begin{minipage}[t]{0.395\textwidth}
+\begin{minipage}[t]{0.4\textwidth}
 \section{Skills}
 
     \subsubsection{Web}
@@ -76,6 +73,9 @@ foo@bar.com
 	}
 	\end{tikzpicture}
 
+\end{minipage}
+\noindent
+\begin{minipage}[t]{0.6\textwidth}
 \section{Experience}
 
 \definecolor{maintenance_color}{RGB}{218, 64, 122}
@@ -102,7 +102,7 @@ foo@bar.com
     \edef\color{\pgfmathresult}
     \draw[fill={\color},draw={\color}] (0,0) -- (\angle:\radius)
     arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
-    \node[text=white] at (\angle+0.5*\percent*3.6:0.65*\radius) {\scriptsize \name};
+    \node[text=white] at (\angle+0.5*\percent*3.6:0.65*\radius) {\scriptsize\textbf{\name}};
     \pgfmathparse{\angle+\percent*3.6}
     \xdef\angle{\pgfmathresult}
     \fi

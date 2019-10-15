@@ -14,7 +14,7 @@ impl Default for LayoutConfig {
         LayoutConfig {
             font_location: path.into_os_string().into_string().unwrap(),
             font: "FiraSans".to_string(),
-            font_size: "12pt".to_string(),
+            font_size: "10pt".to_string(),
         }
     }
 }

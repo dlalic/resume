@@ -1,5 +1,5 @@
-use crate::integrations::execute::Execute;
 use crate::integrations::browser_extension::BrowserExtensionIntegration;
+use crate::integrations::execute::Execute;
 use crate::integrations::tex::TexIntegration;
 use crate::models::resume::Resume;
 #[macro_use]
