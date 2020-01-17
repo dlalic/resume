@@ -7,7 +7,7 @@ use std::path::PathBuf;
 pub(crate) struct TexIntegration {}
 
 impl Execute for TexIntegration {
-    fn execute(resume: &Resume) -> Result<(String), Error> {
+    fn execute(resume: &Resume) -> Result<String, Error> {
         let path = PathBuf::from("output.tex");
         render_template(resume, &path)
     }

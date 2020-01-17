@@ -20,18 +20,18 @@
 <div class="row">
     <div class="col">
         <% for employment in employments %>
-        <form class="employment" id='<<"employment__{:?}"|format(loop.index0)>>'>
+        <form class="employment" id=<<"employment__{:?}"|format(loop.index0)>>>
             <div class="form-group">
-                <textarea id='<<"company__{:?}"|format(loop.index0)>>' class="form-control" rows="1" readonly><<employment.company>></textarea>
+                <textarea class="form-control" rows="1" readonly id=<<"company__{:?}"|format(loop.index0)>>><<employment.company>></textarea>
             </div>
             <div class="form-group">
-                <textarea id='<<"title__{:?}"|format(loop.index0)>>' class="form-control" rows="1" readonly><<employment.title>></textarea>
+                <textarea class="form-control" rows="1" readonly id=<<"title__{:?}"|format(loop.index0)>>><<employment.title>></textarea>
             </div>
             <div class="form-group">
-                <textarea id='<<"start__{:?}"|format(loop.index0)>>' class="form-control" rows="1" readonly><<employment.start>></textarea>
+                <textarea class="form-control" rows="1" readonly id=<<"start__{:?}"|format(loop.index0)>>><<employment.start>></textarea>
             </div>
             <div class="form-group">
-                <textarea id='<<"end__{:?}"|format(loop.index0)>>' class="form-control" rows="1" readonly><<employment.end>></textarea>
+                <textarea class="form-control" rows="1" readonly id=<<"end__{:?}"|format(loop.index0)>>><<employment.end>></textarea>
             </div>
             <% for keyword in employment.keywords %>
             <div class="form-group">
