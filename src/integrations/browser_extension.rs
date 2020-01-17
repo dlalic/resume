@@ -9,7 +9,7 @@ extern crate dirs;
 pub(crate) struct BrowserExtensionIntegration {}
 
 impl Execute for BrowserExtensionIntegration {
-    fn execute(resume: &Resume) -> Result<(String), Error> {
+    fn execute(resume: &Resume) -> Result<String, Error> {
         let reduced = ReducedResume::from(resume);
         let path: PathBuf = ["browser-extension", "sidebar", "panel.html"]
             .iter()

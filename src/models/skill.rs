@@ -1,5 +1,3 @@
-extern crate askama;
-
 use crate::models::color::Color;
 use crate::serializers::color_serializer;
 use serde::Deserialize;

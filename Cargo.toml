@@ -21,10 +21,6 @@ serde_yaml = "0.8"
 criterion = "0.3"
 proptest = "0.9"
 
-[dev-dependencies.cargo-husky]
-version = "1"
-features = ["run-cargo-fmt"]
-
 [[bench]]
 name = "color"
 harness = false
