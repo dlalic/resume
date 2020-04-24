@@ -8,7 +8,7 @@ Tired of having resume stored in different places and formats? Store it in one p
 
 ## Integrations
 
-### `cargo run tex`
+### `cargo run -- --mode=tex`
 
 Outputs a `output.tex` file that renders into the below pdf based on example data in [`examples/resume.yaml`](examples/resume.yaml).
 
@@ -20,7 +20,7 @@ Outputs a `output.tex` file that renders into the below pdf based on example dat
 1. The fonts used are located in `examples/fonts` directory and licensed under [`SIL Open Font License`](examples/fonts/SIL%20Open%20Font%20License.txt).
 1. A similar project is [`pyresume`](https://github.com/waynr/pyresume).
 
-### `cargo run be`
+### `cargo run -- --mode=be`
 
 Generates a web browser extension with the employment and education fields of the resume. The extension is a panel shown on the left side below. The fields are copied to clipboard on click for convenience and suggestions are shown if possible.
 
