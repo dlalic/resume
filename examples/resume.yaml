@@ -19,19 +19,3 @@ educations:
     title: dfg.gf.gdf.dfg.gdf.dgf
     start: 2017-01
     end: 2017-01
-skills:
-  - name: Web
-    level: 3
-    start_color: 36, 36, 93
-    end_color: 115, 199, 238
-  - name: Mobile
-    level: 4
-    start_color: 175, 48, 51
-    end_color: 240, 177, 86
-experiences:
-  - name: Maintenance
-    percent: 60
-    color: 218, 64, 122
-  - name: Greenfield
-    percent: 40
-    color: 95	,175, 87
