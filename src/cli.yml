@@ -1,11 +1,11 @@
 name: resume
 args:
     - config:
-        value_name: FILE
+        long: config
         help: A resume yaml specification, see examples/resume.yaml
         takes_value: true
-subcommands:
-    - tex:
-        about: Render the resume to a .tex file
-    - be:
-        about: Render the browser extension
+    - mode:
+        long: mode
+        help: Render the resume to a .tex file or the browser extension
+        possible_values: [ tex, be ]
+        takes_value: true
