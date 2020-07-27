@@ -1,6 +1,6 @@
 # Resume
 
-[![Build Status](https://travis-ci.org/dlalic/resume.svg?branch=master)](https://travis-ci.org/dlalic/resume)
+![Continuous integration](https://github.com/dlalic/resume/workflows/Continuous%20integration/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/dlalic/resume/badge)](https://www.codefactor.io/repository/github/dlalic/resume)
 
 Tired of having resume stored in different places and formats? Store it in one place: a human readable `yaml` and use it to generate a `LaTeX` pdf or populate web forms with a help of browser extension. 
