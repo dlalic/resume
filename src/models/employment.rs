@@ -16,6 +16,6 @@ pub struct Employment {
 
 impl Employment {
     pub(crate) fn duration(&self) -> String {
-        format!("{} - {}", self.start.format("%Y"), self.end.format("%Y"))
+        format!("{} - {}", self.start.format("%b %Y"), self.end.format("%b %Y"))
     }
 }
