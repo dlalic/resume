@@ -51,3 +51,6 @@ experiences:
   - name: Greenfield
     percent: 40
     color: 95	,175, 87
+contributions:
+  - name: foo
+    url: bar

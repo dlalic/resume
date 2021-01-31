@@ -1,4 +1,5 @@
 extern crate askama;
+use crate::models::contribution::Contribution;
 use crate::models::education::Education;
 use crate::models::employment::Employment;
 use crate::models::experience::Experience;
@@ -18,4 +19,5 @@ pub struct Resume {
     pub(crate) educations: Vec<Education>,
     pub(crate) skills: Vec<Skill>,
     pub(crate) experiences: Vec<Experience>,
+    pub(crate) contributions: Vec<Contribution>,
 }

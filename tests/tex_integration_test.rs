@@ -5,6 +5,7 @@ use std::fs;
 fn it_generates_correct_tex_file() {
     let config = "examples/resume.yaml";
     let run_result = run(Integration::Tex, &config);
+    println!("{:?}", run_result);
     assert!(run_result.is_ok());
     let result = fs::read_to_string("output.tex");
     let expected = fs::read_to_string("tests/fixtures/expected.tex");

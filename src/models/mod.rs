@@ -1,4 +1,5 @@
 pub mod color;
+pub mod contribution;
 pub mod education;
 pub mod employment;
 pub mod experience;

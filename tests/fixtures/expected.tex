@@ -3,8 +3,9 @@
 \geometry{a4paper}
 \usepackage{graphicx}
 \usepackage[space]{grffile}
-\usepackage{fontspec}
 \usepackage{enumitem}
+\usepackage{fontspec}
+\usepackage{hyperref}
 \usepackage{paracol}
 \usepackage{tikz}
 \usepackage{wrapfig}
@@ -20,6 +21,10 @@
 \setcounter{secnumdepth}{0}
 \setlist[itemize]{before=\small,leftmargin=*,rightmargin=1.5em,noitemsep}
 \def\labelitemi{--}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=[rgb]{0.1,0.1,0.7}
+}
 
 \begin{document}
 
@@ -138,6 +143,12 @@
     \fi
     };
 \end{tikzpicture}
+\section{FOSS contributions}
+\begin{itemize}
+    
+     \item \href{bar}{foo}
+    
+\end{itemize}
 \end{rightcolumn}
 \end{paracol}
 
