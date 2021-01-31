@@ -14,11 +14,22 @@ employments:
     points:
       - Lorem Ipsum is simply dummy text of the printing and typesetting industry.
       - Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+  - company: Tyrell Corp
+    title: Mechanic
+    start: 2016-09
+    end: 2016-12
+    keywords:
+      - assembly
+    points:
+      - I've seen things you people wouldn't believe.
+      - Attack ships on fire off the shoulder of Orion.
+      - I watched C-beams glitter in the dark near the Tannhäuser Gate.
+      - All those moments will be lost in time, like tears in rain.
 educations:
   - institution: Mars Univeristy
     title: dfg.gf.gdf.dfg.gdf.dgf
-    start: 2017-01
-    end: 2017-01
+    start: 2013-10
+    end: 2016-07
 skills:
   - name: Web
     keywords:
