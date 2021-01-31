@@ -2,9 +2,28 @@
 
 \begin{document}
 
-\section{<<person.name>>}
-<<person.location>>\\
-<<person.contact>>
+<% match person.image_file %>
+  <% when Some with (val) %>
+    \columnratio{0.1}
+    \begin{paracol}{2}
+    \begin{leftcolumn}
+    \noindent
+    \begin{tikzpicture}[baseline=(image.center),inner sep=0pt]
+    \clip (0,0)  circle (0.05\textwidth) node (image) {\includegraphics[width=0.1\textwidth]{<<val>>}};
+    \end{tikzpicture}
+    \end{leftcolumn}
+
+    \begin{rightcolumn}
+    \section{Dunja Lalic}
+    Berlin, Germany\\
+    dunja.lalic@gmail.com
+    \end{rightcolumn}
+    \end{paracol}
+  <% when None %>
+    \section{<<person.name>>}
+    <<person.location>>\\
+    <<person.contact>>
+<% endmatch %>
 
 \columnratio{0.7}
 
