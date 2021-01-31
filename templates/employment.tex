@@ -2,9 +2,9 @@
 <% for employment in employments %>
 \begin{description}
     \item [<<employment.company>>] <<employment.title>>, <<employment.duration()>>
-    \item [\footnotesize{
+    \item [] \textbf{\footnotesize{
     <% for keyword in employment.keywords %> <<keyword>><% if !loop.last %>,<% endif %> <% endfor %>
-    }]
+    }}
 \end{description}
 \begin{itemize}
     <% for point in employment.points %>
