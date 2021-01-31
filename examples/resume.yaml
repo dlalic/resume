@@ -6,7 +6,7 @@ employments:
   - company: Acme Corp
     title: Code monkey
     start: 2017-01
-    end: 2019-09
+    end: none
     keywords:
       - foo
       - bar

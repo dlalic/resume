@@ -1,15 +1,19 @@
-use chrono::NaiveDate;
+use chrono::{NaiveDate, ParseResult};
 use serde::{self, Deserialize, Deserializer};
 
 pub(crate) fn deserialize<'de, D>(deserializer: D) -> Result<NaiveDate, D::Error>
 where
     D: Deserializer<'de>,
 {
-    let raw_string = String::deserialize(deserializer)?;
+    let s = String::deserialize(deserializer)?;
+    deserialize_str(&s).map_err(serde::de::Error::custom)
+}
+
+pub(crate) fn deserialize_str(s: &str) -> ParseResult<NaiveDate> {
     // Sticking to ISO 8601, as guessing the date format looks like a nightmare:
     // https://github.com/dateutil/dateutil/blob/master/dateutil/parser/isoparser.py
     let delimiter = "-";
-    let mut components: Vec<&str> = raw_string.split(delimiter).collect();
+    let mut components: Vec<&str> = s.split(delimiter).collect();
     // Per chrono documentation, "Out-of-bound dates or insufficient fields are errors."
     // Hence, dates missing %m or %d need to be appended with missing values
     while components.len() < 3 {
@@ -17,7 +21,7 @@ where
     }
     let format = "%Y %m %d";
     let date_string = components.join(" ");
-    NaiveDate::parse_from_str(&date_string, format).map_err(serde::de::Error::custom)
+    NaiveDate::parse_from_str(&date_string, format)
 }
 
 #[cfg(test)]
