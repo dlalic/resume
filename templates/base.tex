@@ -2,10 +2,13 @@
 \usepackage[margin=1.9cm]{geometry}
 \geometry{a4paper}
 \usepackage{graphicx}
-\usepackage{fontspec,xltxtra,xunicode}
+\usepackage{fontspec}
+\usepackage{enumitem}
+\usepackage{paracol}
 \usepackage{tikz}
 \usepackage{wrapfig}
-\usepackage{enumitem}
+\usepackage{xltxtra}
+\usepackage{xunicode}
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont{<<config.font>>}[
     Path = <<config.font_location>>,
@@ -14,4 +17,4 @@
     ItalicFont = *-Italic,
 ]
 \setcounter{secnumdepth}{0}
-\setlist[itemize]{before=\small,leftmargin=*,noitemsep}
+\setlist[itemize]{before=\small,leftmargin=*,rightmargin=0.5em,noitemsep}

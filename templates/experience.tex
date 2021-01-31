@@ -1,0 +1,30 @@
+\section{Experience}
+<% for experience in experiences %>
+\definecolor{<<experience.color_name()>>}{RGB}{<<experience.color>>}
+<% endfor %>
+\def\angle{0}
+\def\radius{3}
+\def\cyclelist{{<% for experience in experiences %>"<<experience.color_name()>>",<% endfor %>
+}}
+\newcount\cyclecount \cyclecount=-1
+\newcount\ind \ind=-1
+\begin{tikzpicture}[scale=0.9]
+    \foreach \percent/\name in {<% for experience in experiences %><<experience.percent>>/<<experience.name>>,<% endfor %>
+    } {
+    \ifx\percent\empty\else
+    \global\advance\cyclecount by 1
+    \global\advance\ind by 1
+    \ifnum3<\cyclecount
+    \global\cyclecount=0
+    \global\ind=0
+    \fi
+    \pgfmathparse{\cyclelist[\the\ind]}
+    \edef\color{\pgfmathresult}
+    \draw[fill={\color},draw={\color}] (0,0) -- (\angle:\radius)
+    arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
+    \node[text=white] at (\angle+0.5*\percent*3.6:0.65*\radius) {\scriptsize\name};
+    \pgfmathparse{\angle+\percent*3.6}
+    \xdef\angle{\pgfmathresult}
+    \fi
+    };
+\end{tikzpicture}

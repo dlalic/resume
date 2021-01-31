@@ -8,13 +8,17 @@ default-run = "resume"
 
 [dependencies]
 askama = "0.10.5"
-byteorder = "1.4"
-chrono = {version = "0.4", features = ["serde"]}
-clap = {version = "2.33", features = ["yaml"]}
-dirs = "3.0"
-failure = "0.1"
-serde = { version = "1.0", features = ["derive"] }
-serde_yaml = "0.8"
+byteorder = "1.4.2"
+chrono = {version = "0.4.19", features = ["serde"]}
+clap = {version = "2.33.3", features = ["yaml"]}
+dirs = "3.0.1"
+failure = "0.1.8"
+serde = { version = "1.0.123", features = ["derive"] }
+serde_yaml = "0.8.15"
 
 [dev-dependencies]
-proptest = "0.10"
+proptest = "0.10.1"
+
+[[bench]]
+name = "color"
+harness = false

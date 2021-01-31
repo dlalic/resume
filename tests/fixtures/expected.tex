@@ -2,10 +2,13 @@
 \usepackage[margin=1.9cm]{geometry}
 \geometry{a4paper}
 \usepackage{graphicx}
-\usepackage{fontspec,xltxtra,xunicode}
+\usepackage{fontspec}
+\usepackage{enumitem}
+\usepackage{paracol}
 \usepackage{tikz}
 \usepackage{wrapfig}
-\usepackage{enumitem}
+\usepackage{xltxtra}
+\usepackage{xunicode}
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont{FiraSans}[
     Path = ./examples/fonts/,
@@ -14,7 +17,7 @@
     ItalicFont = *-Italic,
 ]
 \setcounter{secnumdepth}{0}
-\setlist[itemize]{before=\small,leftmargin=*,noitemsep}
+\setlist[itemize]{before=\small,leftmargin=*,rightmargin=0.5em,noitemsep}
 
 \begin{document}
 
@@ -22,13 +25,17 @@
 Berlin, Germany\\
 foo@bar.com
 
+\columnratio{0.7}
+
+\begin{paracol}{2}
+\begin{leftcolumn}
 \section{Employment}
 
 \begin{description}
     \item [Acme Corp] Code monkey, Jan 2017 - Sep 2019
-    \item [] \footnotesize\textsl{
+    \item [\footnotesize{
      foo,  bar,  baz 
-    }
+    }]
 \end{description}
 \begin{itemize}
     
@@ -47,5 +54,68 @@ foo@bar.com
     \item dfg.gf.gdf.dfg.gdf.dgf, 2017 - 2017
 \end{itemize}
 
+\end{leftcolumn}
+
+\begin{rightcolumn}
+\section{Skills}
+
+    \begin{description}
+    \item [Web:]  Rails,  Django 
+    \end{description}
+	\definecolor{web_color_start}{RGB}{36, 36, 93}
+	\definecolor{web_color_end}{RGB}{115, 199, 238}
+    \noindent\begin{tikzpicture}
+	\foreach \x in {1,...,3}
+	{ \pgfmathtruncatemacro{\percent}{100 - \x /4 * 100}
+	  \node[rectangle,draw=none,fill=web_color_start!\percent!web_color_end,minimum width=30] (0,0) at (\x, 0) { };
+	}
+	\end{tikzpicture}
+
+    \begin{description}
+    \item [Mobile:]  Android 
+    \end{description}
+	\definecolor{mobile_color_start}{RGB}{175, 48, 51}
+	\definecolor{mobile_color_end}{RGB}{240, 177, 86}
+    \noindent\begin{tikzpicture}
+	\foreach \x in {1,...,4}
+	{ \pgfmathtruncatemacro{\percent}{100 - \x /5 * 100}
+	  \node[rectangle,draw=none,fill=mobile_color_start!\percent!mobile_color_end,minimum width=30] (0,0) at (\x, 0) { };
+	}
+	\end{tikzpicture}
+
+\section{Experience}
+
+\definecolor{maintenance_color}{RGB}{218, 64, 122}
+
+\definecolor{greenfield_color}{RGB}{95, 175, 87}
+
+\def\angle{0}
+\def\radius{3}
+\def\cyclelist{{"maintenance_color","greenfield_color",
+}}
+\newcount\cyclecount \cyclecount=-1
+\newcount\ind \ind=-1
+\begin{tikzpicture}[scale=0.9]
+    \foreach \percent/\name in {60/Maintenance,40/Greenfield,
+    } {
+    \ifx\percent\empty\else
+    \global\advance\cyclecount by 1
+    \global\advance\ind by 1
+    \ifnum3<\cyclecount
+    \global\cyclecount=0
+    \global\ind=0
+    \fi
+    \pgfmathparse{\cyclelist[\the\ind]}
+    \edef\color{\pgfmathresult}
+    \draw[fill={\color},draw={\color}] (0,0) -- (\angle:\radius)
+    arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
+    \node[text=white] at (\angle+0.5*\percent*3.6:0.65*\radius) {\scriptsize\name};
+    \pgfmathparse{\angle+\percent*3.6}
+    \xdef\angle{\pgfmathresult}
+    \fi
+    };
+\end{tikzpicture}
+\end{rightcolumn}
+\end{paracol}
 
 \end{document}
