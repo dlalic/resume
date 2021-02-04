@@ -137,9 +137,9 @@
     \fi
     \pgfmathparse{\cyclelist[\the\ind]}
     \edef\color{\pgfmathresult}
-    \draw[fill={\color},draw={\color}] (0,0) -- (\angle:\radius)
+    \draw[fill={\color!70},draw={\color}] (0,0) -- (\angle:\radius)
     arc (\angle:\angle+\percent*3.6:\radius) -- cycle;
-    \node[text=white] at (\angle+0.5*\percent*3.6:0.65*\radius) {\scriptsize\name};
+    \node at (\angle+0.5*\percent*3.6:0.65*\radius) {\scriptsize\name};
     \pgfmathparse{\angle+\percent*3.6}
     \xdef\angle{\pgfmathresult}
     \fi
