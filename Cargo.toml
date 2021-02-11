@@ -14,7 +14,7 @@ clap = {version = "2.33.3", features = ["yaml"]}
 dirs = "3.0.1"
 failure = "0.1.8"
 serde = { version = "1.0.123", features = ["derive"] }
-serde_yaml = "0.8.16"
+serde_yaml = "0.8.17"
 
 [dev-dependencies]
 proptest = "0.10.1"
