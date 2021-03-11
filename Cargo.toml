@@ -8,7 +8,7 @@ default-run = "resume"
 
 [dependencies]
 askama = "0.10.5"
-byteorder = "1.4.2"
+byteorder = "1.4.3"
 chrono = {version = "0.4.19", features = ["serde"]}
 clap = {version = "2.33.3", features = ["yaml"]}
 dirs = "3.0.1"
