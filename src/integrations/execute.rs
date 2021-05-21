@@ -1,6 +1,6 @@
 use crate::models::resume::Resume;
-use failure::Error;
+use anyhow::Result;
 
 pub(crate) trait Execute {
-    fn execute(resume: &Resume) -> Result<String, Error>;
+    fn execute(resume: &Resume) -> Result<String>;
 }

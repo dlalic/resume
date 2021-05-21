@@ -1,3 +1,4 @@
+use anyhow::anyhow;
 use core::fmt;
 use serde::Deserialize;
 use std::str::FromStr;
@@ -16,7 +17,7 @@ impl fmt::Display for Color {
 }
 
 impl FromStr for Color {
-    type Err = failure::Error;
+    type Err = anyhow::Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut values: [u8; 3] = [0; 3];
@@ -25,7 +26,7 @@ impl FromStr for Color {
             num_values += 1;
             match i {
                 0 | 1 | 2 => values[i] = u8::from_str(c.trim())?,
-                _ => return Err(format_err!("too many color components, expected 3")),
+                _ => return Err(anyhow!("too many color components, expected 3")),
             }
         }
         match num_values {
@@ -34,7 +35,7 @@ impl FromStr for Color {
                 green: values[1],
                 blue: values[2],
             }),
-            _ => Err(format_err!("too few color components, expected 3")),
+            _ => Err(anyhow!("too few color components, expected 3")),
         }
     }
 }

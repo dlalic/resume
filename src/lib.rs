@@ -2,10 +2,8 @@ use crate::integrations::browser_extension::BrowserExtensionIntegration;
 use crate::integrations::execute::Execute;
 use crate::integrations::tex::TexIntegration;
 use crate::models::resume::Resume;
-#[macro_use]
-extern crate failure;
 
-use failure::Error;
+use anyhow::Result;
 use std::fs;
 
 mod integrations;
@@ -21,7 +19,7 @@ pub enum Integration {
     BrowserExtension,
 }
 
-pub fn run(int: Integration, config: &str) -> Result<String, Error> {
+pub fn run(int: Integration, config: &str) -> Result<String> {
     let contents = fs::read_to_string(config)?;
     let resume: Resume = serde_yaml::from_str(&contents)?;
     match int {
