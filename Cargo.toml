@@ -13,7 +13,7 @@ chrono = {version = "0.4.19", features = ["serde"]}
 clap = {version = "2.33.3", features = ["yaml"]}
 dirs = "3.0.2"
 failure = "0.1.8"
-serde = { version = "1.0.125", features = ["derive"] }
+serde = { version = "1.0.126", features = ["derive"] }
 serde_yaml = "0.8.17"
 
 [dev-dependencies]
