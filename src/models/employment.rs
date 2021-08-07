@@ -69,7 +69,7 @@ where
         fn visit_str<E: de::Error>(self, s: &str) -> Result<Self::Value, E> {
             match s {
                 "none" => Ok(Self::Value::None),
-                _ => date_serializer::deserialize_str(&s)
+                _ => date_serializer::deserialize_str(s)
                     .map(EndDate::Date)
                     .map_err(serde::de::Error::custom),
             }
