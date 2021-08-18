@@ -14,7 +14,7 @@ chrono = {version = "0.4.19", features = ["serde"]}
 clap = {version = "2.33.3", features = ["yaml"]}
 dirs = "3.0.2"
 serde = { version = "1.0.127", features = ["derive"] }
-serde_yaml = "0.8.17"
+serde_yaml = "0.8.18"
 
 [dev-dependencies]
 proptest = "1.0.0"
