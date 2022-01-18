@@ -11,7 +11,7 @@ anyhow = "1.0.52"
 askama = "0.10.5"
 byteorder = "1.4.3"
 chrono = {version = "0.4.19", features = ["serde"]}
-clap = {version = "2.34.0", features = ["yaml"]}
+clap = {version = "3.0.9", features = ["yaml"]}
 dirs = "4.0.0"
 serde = { version = "1.0.133", features = ["derive"] }
 serde_yaml = "0.8.23"
