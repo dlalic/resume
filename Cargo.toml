@@ -7,7 +7,7 @@ license = "MIT"
 default-run = "resume"
 
 [dependencies]
-anyhow = "1.0.54"
+anyhow = "1.0.55"
 askama = "0.10.5"
 byteorder = "1.4.3"
 chrono = {version = "0.4.19", features = ["serde"]}
