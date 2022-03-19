@@ -1,22 +1,23 @@
-#[macro_use]
-extern crate clap;
-
-use clap::App;
 use resume::Integration;
 
-fn main() {
-    let yaml = load_yaml!("cli.yml");
-    let matches = App::from_yaml(yaml).get_matches();
+use clap::Parser;
 
-    let config = matches.value_of("config").unwrap_or("examples/resume.yaml");
-    println!("Using config: {}", config);
-    let mode = matches.value_of("mode").unwrap_or("tex");
-    let int = match mode {
-        "tex" => Integration::Tex,
-        "be" => Integration::BrowserExtension,
-        _ => Integration::Tex,
-    };
-    match resume::run(int, config) {
+#[derive(Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
+struct Cli {
+    /// A resume yaml specification, see examples/resume.yaml
+    #[clap(short, long, default_value = "examples/resume.yaml")]
+    config: String,
+
+    /// Render the resume to a .tex file or the browser extension
+    #[clap(arg_enum)]
+    mode: Integration,
+}
+
+fn main() {
+    let cli = Cli::parse();
+    println!("Using config: {}", &cli.config);
+    match resume::run(cli.mode, &cli.config) {
         Ok(output) => println!("{}", output),
         Err(e) => println!("Error: {:?}", e),
     }
