@@ -12,8 +12,9 @@ mod integrations;
 pub mod models;
 mod operations;
 mod serializers;
+use clap::ArgEnum;
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ArgEnum)]
 pub enum Integration {
     Tex,
     BrowserExtension,

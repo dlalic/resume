@@ -2,16 +2,15 @@
 name = "resume"
 version = "0.1.0"
 authors = ["Dunja Lalic"]
-edition = "2018"
+edition = "2021"
 license = "MIT"
-default-run = "resume"
 
 [dependencies]
 anyhow = "1.0.56"
-askama = "0.10.5"
+askama = "0.11.1"
 byteorder = "1.4.3"
-chrono = {version = "0.4.19", features = ["serde"]}
-clap = {version = "3.1.6", features = ["yaml"]}
+chrono = { version = "0.4.19", features = ["serde"] }
+clap = { version = "3.1.6", features = ["derive"] }
 dirs = "4.0.0"
 serde = { version = "1.0.136", features = ["derive"] }
 serde_yaml = "0.8.23"
