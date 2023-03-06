@@ -16,7 +16,7 @@ serde = { version = "1.0.152", features = ["derive"] }
 serde_yaml = "0.9.19"
 
 [dev-dependencies]
-proptest = "1.0.0"
+proptest = "1.1.0"
 
 [[bench]]
 name = "color"
