@@ -12,7 +12,7 @@ byteorder = "1.4.3"
 chrono = { version = "0.4.23", features = ["serde"] }
 clap = { version = "3.2.23", features = ["derive"] }
 dirs = "4.0.0"
-serde = { version = "1.0.153", features = ["derive"] }
+serde = { version = "1.0.154", features = ["derive"] }
 serde_yaml = "0.9.19"
 
 [dev-dependencies]
