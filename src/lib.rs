@@ -4,6 +4,7 @@ use crate::integrations::tex::TexIntegration;
 use crate::models::resume::Resume;
 
 use anyhow::Result;
+use clap::ValueEnum;
 use std::fs;
 
 mod integrations;
@@ -12,9 +13,8 @@ mod integrations;
 pub mod models;
 mod operations;
 mod serializers;
-use clap::ArgEnum;
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ArgEnum)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
 pub enum Integration {
     Tex,
     BrowserExtension,

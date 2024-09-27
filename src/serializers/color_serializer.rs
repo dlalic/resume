@@ -19,14 +19,14 @@ mod tests {
     #[derive(Deserialize)]
     pub struct Foo {
         #[serde(with = "color_serializer")]
-        pub color: Color,
+        pub _color: Color,
     }
 
     proptest! {
         #[test]
         fn parses_all_valid_colors(r in 0u8..255, g in 0u8..255, b in 0u8..255) {
             let color_string = format!("{}, {}, {}", r, g, b);
-            let yaml: String = format!("color: {}", &color_string);
+            let yaml: String = format!("_color: {}", &color_string);
             let _: Foo = serde_yaml::from_str(&yaml).unwrap();
         }
     }
@@ -34,27 +34,27 @@ mod tests {
     #[test]
     #[should_panic(expected = "too few color components")]
     fn chokes_on_too_few_number_of_components() {
-        let _: Foo = serde_yaml::from_str("color: 1").unwrap();
-        let _: Foo = serde_yaml::from_str("color: 1, 2").unwrap();
+        let _: Foo = serde_yaml::from_str("_color: 1").unwrap();
+        let _: Foo = serde_yaml::from_str("_color: 1, 2").unwrap();
     }
 
     #[test]
     #[should_panic(expected = "too many color components")]
     fn chokes_on_too_many_number_of_components() {
-        let _: Foo = serde_yaml::from_str("color: 1, 2, 3, 4").unwrap();
+        let _: Foo = serde_yaml::from_str("_color: 1, 2, 3, 4").unwrap();
     }
 
     #[test]
     #[should_panic(expected = "number too large")]
     fn chokes_on_out_of_range_values() {
-        let _: Foo = serde_yaml::from_str("color: 0, 128, 256").unwrap();
-        let _: Foo = serde_yaml::from_str("color: -1, 0, 1").unwrap();
+        let _: Foo = serde_yaml::from_str("_color: 0, 128, 256").unwrap();
+        let _: Foo = serde_yaml::from_str("_color: -1, 0, 1").unwrap();
     }
 
     #[test]
     #[should_panic(expected = "invalid digit found")]
     fn chokes_on_invalid_chars() {
-        let _: Foo = serde_yaml::from_str("color: white").unwrap();
-        let _: Foo = serde_yaml::from_str("color: #aabbcc").unwrap();
+        let _: Foo = serde_yaml::from_str("_color: white").unwrap();
+        let _: Foo = serde_yaml::from_str("_color: #aabbcc").unwrap();
     }
 }
