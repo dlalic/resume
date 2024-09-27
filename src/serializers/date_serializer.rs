@@ -33,11 +33,11 @@ mod tests {
     #[derive(Deserialize)]
     pub struct Foo {
         #[serde(with = "date_serializer")]
-        pub date: NaiveDate,
+        pub _date: NaiveDate,
     }
 
     fn yaml_value(date_string: &str) -> Foo {
-        let yaml = format!("date: {}", date_string);
+        let yaml = format!("_date: {}", date_string);
         serde_yaml::from_str(&yaml).unwrap()
     }
 

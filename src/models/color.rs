@@ -25,7 +25,7 @@ impl FromStr for Color {
         for (i, c) in s.split_terminator(',').enumerate() {
             num_values += 1;
             match i {
-                0 | 1 | 2 => values[i] = u8::from_str(c.trim())?,
+                0..=2 => values[i] = u8::from_str(c.trim())?,
                 _ => return Err(anyhow!("too many color components, expected 3")),
             }
         }

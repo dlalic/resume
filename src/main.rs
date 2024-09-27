@@ -10,7 +10,7 @@ struct Cli {
     config: String,
 
     /// Render the resume to a .tex file or the browser extension
-    #[clap(arg_enum)]
+    #[clap(value_enum)]
     mode: Integration,
 }
 
